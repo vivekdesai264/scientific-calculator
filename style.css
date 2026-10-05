@@ -1,0 +1,1205 @@
+/* ==========================================================================
+   OmniCalc Pro — Stylesheet (style.css)
+   Pixel-Perfect Match to UI Reference Image
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+:root {
+  /* Visual Theme & Palette (Dark Obsidian Theme) */
+  --bg-radial-start: #1b2438;
+  --bg-radial-end: #0c1018;
+  --calc-body-bg: #090c13;
+  --calc-border: #1a2233;
+  --calc-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.8), 0 15px 30px -15px rgba(0, 0, 0, 0.7);
+  --pane-border: #141a26;
+  --display-bg: #06080e;
+  --display-border: rgba(255, 255, 255, 0.02);
+  --display-text-upper: #79869f;
+  --display-text-main: #ffffff;
+  
+  /* Buttons */
+  --btn-num-bg: #151b28;
+  --btn-num-hover: #222b3e;
+  --btn-num-text: #f1f5f9;
+  
+  --btn-sci-bg: #101522;
+  --btn-sci-hover: #192135;
+  --btn-sci-text: #94a3b8;
+  --btn-sci-text-hover: #e2e8f0;
+  
+  --btn-op-bg: #131825;
+  --btn-op-hover: #1e263a;
+  --btn-op-text: #94a3b8;
+  
+  --btn-clear-bg: #1c263c;
+  --btn-clear-hover: #273654;
+  --btn-clear-text: #93c5fd;
+  
+  --btn-delete-bg: #3b1419;
+  --btn-delete-hover: #501d24;
+  --btn-delete-text: #fca5a5;
+  
+  --btn-equals-bg: #2563eb;
+  --btn-equals-hover: #1d4ed8;
+  --btn-equals-text: #ffffff;
+  --btn-equals-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+
+  --nav-bg: #090c13;
+  --nav-border: #141a26;
+  --nav-text: #717f96;
+  --nav-text-active: #f8fafc;
+  --nav-indicator: #3b82f6;
+
+  --subbar-bg: #090c13;
+  --pill-bg: transparent;
+  --pill-border: transparent;
+  --pill-text: #79869f;
+  --pill-hover: #141b29;
+  --badge-deg-rad: #38bdf8;
+
+  --sidebar-bg: #090c13;
+  --sidebar-header-bg: #090c13;
+  --sidebar-text: #79869f;
+  --sidebar-item-bg: transparent;
+  --sidebar-item-border: transparent;
+  --sidebar-item-hover: rgba(255, 255, 255, 0.025);
+  --scrollbar-thumb: #1a2233;
+  
+  --dropdown-bg: #101624;
+  --dropdown-border: #1e273a;
+  --modal-overlay: rgba(0, 0, 0, 0.75);
+  --modal-bg: #0d121c;
+  
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", "Roboto Mono", "Courier New", monospace;
+}
+
+[data-theme="light"] {
+  /* Light Slate Theme */
+  --bg-radial-start: #e2e8f0;
+  --bg-radial-end: #cbd5e1;
+  --calc-body-bg: #f8fafc;
+  --calc-border: #cbd5e1;
+  --calc-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  --pane-border: #e2e8f0;
+  --display-bg: #ffffff;
+  --display-border: rgba(0, 0, 0, 0.06);
+  --display-text-upper: #64748b;
+  --display-text-main: #0f172a;
+  
+  --btn-num-bg: #ffffff;
+  --btn-num-hover: #f1f5f9;
+  --btn-num-text: #1e293b;
+  
+  --btn-sci-bg: #f1f5f9;
+  --btn-sci-hover: #e2e8f0;
+  --btn-sci-text: #475569;
+  --btn-sci-text-hover: #0f172a;
+  
+  --btn-op-bg: #e2e8f0;
+  --btn-op-hover: #cbd5e1;
+  --btn-op-text: #334155;
+  
+  --btn-clear-bg: #dbeafe;
+  --btn-clear-hover: #bfdbfe;
+  --btn-clear-text: #1d4ed8;
+  
+  --btn-delete-bg: #fee2e2;
+  --btn-delete-hover: #fecaca;
+  --btn-delete-text: #b91c1c;
+  
+  --btn-equals-bg: #2563eb;
+  --btn-equals-hover: #1d4ed8;
+  --btn-equals-text: #ffffff;
+  --btn-equals-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+
+  --nav-bg: #f8fafc;
+  --nav-border: #e2e8f0;
+  --nav-text: #64748b;
+  --nav-text-active: #0f172a;
+  --nav-indicator: #2563eb;
+
+  --subbar-bg: #f8fafc;
+  --pill-bg: transparent;
+  --pill-border: transparent;
+  --pill-text: #64748b;
+  --pill-hover: #f1f5f9;
+  --badge-deg-rad: #0284c7;
+
+  --sidebar-bg: #f8fafc;
+  --sidebar-header-bg: #f8fafc;
+  --sidebar-text: #64748b;
+  --sidebar-item-bg: transparent;
+  --sidebar-item-border: transparent;
+  --sidebar-item-hover: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  
+  --dropdown-bg: #ffffff;
+  --dropdown-border: #cbd5e1;
+  --modal-overlay: rgba(15, 23, 42, 0.5);
+  --modal-bg: #ffffff;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  background: radial-gradient(circle at center, var(--bg-radial-start) 0%, var(--bg-radial-end) 100%);
+  color: var(--display-text-main);
+  padding: 16px;
+  overflow-x: hidden;
+  transition: background 0.3s ease;
+}
+
+/* ==========================================================================
+   Main Calculator App Container (~1020px width × 650px height)
+   ========================================================================== */
+.calculator-container {
+  width: 100%;
+  max-width: 1020px;
+  height: 650px;
+  background-color: var(--calc-body-bg);
+  border: 1px solid var(--calc-border);
+  border-radius: 18px;
+  box-shadow: var(--calc-shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ==========================================================================
+   Top Navigation Bar
+   ========================================================================== */
+.top-navbar {
+  height: 48px;
+  background-color: var(--nav-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--nav-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--nav-text-active);
+}
+
+.icon-btn svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-icon-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--nav-text);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.theme-icon-circle:hover {
+  color: var(--nav-text-active);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 22px;
+}
+
+.nav-tab-item {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--nav-text);
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 12px 2px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  outline: none;
+}
+
+.nav-tab-item:hover {
+  color: var(--nav-text-active);
+}
+
+.nav-tab-item.active {
+  color: var(--nav-text-active);
+  font-weight: 500;
+}
+
+.nav-tab-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: -2px;
+  right: -2px;
+  height: 2px;
+  background: var(--nav-indicator);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+}
+
+/* ==========================================================================
+   Sub-Toolbar (Pill Dropdowns & Angle Mode Toggle)
+   ========================================================================== */
+.sub-toolbar {
+  height: 36px;
+  background-color: var(--subbar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  flex-shrink: 0;
+  font-size: 12px;
+  z-index: 9;
+}
+
+.sub-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pill-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: var(--pill-text);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  outline: none;
+}
+
+.pill-dropdown-trigger:hover, .pill-dropdown-trigger.open {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--nav-text-active);
+}
+
+.pill-dropdown-trigger .arrow-icon {
+  font-size: 8px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.pill-dropdown-trigger.open .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.sub-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.angle-toggle-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--pill-text);
+  width: 28px;
+  height: 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.angle-toggle-btn:hover {
+  color: var(--nav-text-active);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dropdown Menus */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  background: var(--dropdown-bg);
+  border: 1px solid var(--dropdown-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  min-width: 175px;
+  padding: 6px 0;
+  display: none;
+  z-index: 100;
+  animation: fadeInSlide 0.15s ease-out forwards;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-item {
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--display-text-main);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--btn-num-hover);
+  color: #38bdf8;
+}
+
+.dropdown-item span.desc {
+  font-size: 10.5px;
+  color: var(--display-text-upper);
+}
+
+/* ==========================================================================
+   Split-Pane Layout: Left Calculator (62%), Right History Drawer (38%)
+   ========================================================================== */
+.app-body-split {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative;
+}
+
+.calc-left-pane {
+  flex: 1.6;
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 16px 16px;
+  min-width: 0;
+}
+
+.calc-right-pane {
+  flex: 1;
+  max-width: 380px;
+  background-color: var(--sidebar-bg);
+  border-left: 1px solid var(--pane-border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+/* ==========================================================================
+   Screen Display (Spacious Two-Tier Layout)
+   ========================================================================== */
+.display-screen {
+  background-color: transparent;
+  padding: 10px 14px 10px 14px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 120px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.display-upper-line {
+  min-height: 20px;
+  color: var(--display-text-upper);
+  font-family: var(--font-family);
+  font-size: 14px;
+  text-align: right;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.display-upper-line::-webkit-scrollbar {
+  display: none;
+}
+
+.display-lower-line {
+  color: var(--display-text-main);
+  font-family: var(--font-family);
+  font-size: 40px;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  transition: font-size 0.15s ease;
+}
+
+.display-lower-line::-webkit-scrollbar {
+  display: none;
+}
+
+.display-lower-line.long-text {
+  font-size: 28px;
+}
+
+.display-lower-line.super-long-text {
+  font-size: 22px;
+}
+
+.display-lower-line.error-text {
+  color: #f87171;
+  font-size: 24px;
+}
+
+/* ==========================================================================
+   Keypad Matrix (8-Column Grid: 4 Sci Columns + 4 Standard Columns)
+   ========================================================================== */
+.keypad-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 6px;
+  min-height: 0;
+}
+
+.calc-btn {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, transform 0.08s ease, filter 0.15s ease;
+  outline: none;
+  overflow: hidden;
+}
+
+.calc-btn:active, .calc-btn.simulate-active {
+  transform: translateY(1.5px) scale(0.97);
+  filter: brightness(1.25);
+}
+
+/* Base numeric buttons (Right block numbers) */
+.btn-num {
+  background-color: var(--btn-num-bg);
+  color: var(--btn-num-text);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-num:hover {
+  background-color: var(--btn-num-hover);
+}
+
+/* Scientific operator keys (Left block) */
+.btn-sci {
+  background-color: var(--btn-sci-bg);
+  color: var(--btn-sci-text);
+  font-size: 13.5px;
+}
+
+.btn-sci:hover {
+  background-color: var(--btn-sci-hover);
+  color: var(--btn-sci-text-hover);
+}
+
+.btn-sci.active-toggle {
+  background-color: #1e293b;
+  color: #38bdf8;
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+/* Arithmetic operator keys */
+.btn-op {
+  background-color: var(--btn-op-bg);
+  color: var(--btn-op-text);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-op:hover {
+  background-color: var(--btn-op-hover);
+  color: #ffffff;
+}
+
+/* Clear keys (CE, C) */
+.btn-clear {
+  background-color: var(--btn-clear-bg);
+  color: var(--btn-clear-text);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+
+.btn-clear:hover {
+  background-color: var(--btn-clear-hover);
+}
+
+/* Backspace key (⌫) */
+.btn-delete {
+  background-color: var(--btn-delete-bg);
+  color: var(--btn-delete-text);
+  font-size: 15px;
+}
+
+.btn-delete:hover {
+  background-color: var(--btn-delete-hover);
+}
+
+/* Primary Equals Key (=) */
+.btn-equals {
+  background-color: var(--btn-equals-bg);
+  color: var(--btn-equals-text);
+  font-size: 18px;
+  font-weight: 500;
+  box-shadow: var(--btn-equals-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-equals:hover {
+  background-color: var(--btn-equals-hover);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.55);
+}
+
+/* ==========================================================================
+   History & Archive Drawer (Right Pane)
+   ========================================================================== */
+.sidebar-header {
+  height: 48px;
+  background-color: var(--sidebar-header-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-shrink: 0;
+}
+
+.sidebar-tabs {
+  display: flex;
+  gap: 24px;
+}
+
+.sidebar-tab-btn {
+  background: none;
+  border: none;
+  color: var(--sidebar-text);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 12px 2px;
+  position: relative;
+  transition: color 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  outline: none;
+}
+
+.sidebar-tab-btn.active {
+  color: var(--nav-text-active);
+}
+
+.sidebar-tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: -2px;
+  right: -2px;
+  height: 2px;
+  background: var(--nav-indicator);
+  border-radius: 2px;
+}
+
+.sidebar-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+.sidebar-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-body::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+.history-item {
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.history-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.history-expr {
+  font-size: 12.5px;
+  color: var(--display-text-upper);
+  font-family: var(--font-family);
+  text-align: right;
+  word-break: break-all;
+}
+
+.history-result {
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--display-text-main);
+  text-align: right;
+  word-break: break-all;
+}
+
+.history-empty-state {
+  margin: auto;
+  text-align: center;
+  color: var(--display-text-upper);
+  font-size: 12px;
+  padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.history-empty-state svg {
+  width: 32px;
+  height: 32px;
+  stroke: currentColor;
+  opacity: 0.4;
+}
+
+.sidebar-footer {
+  height: 48px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  border-top: 1px solid var(--pane-border);
+}
+
+.save-history-link {
+  background: none;
+  border: none;
+  color: var(--sidebar-text);
+  font-size: 12.5px;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color 0.15s ease;
+  outline: none;
+}
+
+.save-history-link:hover {
+  color: var(--nav-text-active);
+}
+
+.sidebar-footer-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-icon-btn {
+  background: none;
+  border: none;
+  color: var(--sidebar-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+  outline: none;
+}
+
+.footer-icon-btn:hover {
+  color: var(--nav-text-active);
+}
+
+.footer-icon-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ==========================================================================
+   Alternate Mode Panels
+   ========================================================================== */
+.mode-panel {
+  display: none;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--calc-body-bg);
+  z-index: 5;
+  padding: 16px;
+}
+
+.mode-panel.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Graph Panel */
+.graph-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 10px;
+}
+
+.graph-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--display-bg);
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--display-border);
+}
+
+.graph-input {
+  flex: 1;
+  background: #131824;
+  border: 1px solid #1e2638;
+  color: var(--display-text-main);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  outline: none;
+}
+
+.graph-btn {
+  background: var(--btn-equals-bg);
+  color: #fff;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  outline: none;
+}
+
+.graph-canvas-wrapper {
+  flex: 1;
+  position: relative;
+  background: #04060a;
+  border-radius: 8px;
+  border: 1px solid var(--pane-border);
+  overflow: hidden;
+}
+
+#graphCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+
+.graph-info-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--display-text-upper);
+  pointer-events: none;
+}
+
+/* Programmer Panel */
+.programmer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 12px;
+}
+
+.base-display-grid {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 6px 12px;
+  background: var(--display-bg);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--display-border);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.base-label {
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.base-val {
+  color: var(--display-text-main);
+  word-break: break-all;
+}
+
+.programmer-keypad {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 6px;
+}
+
+/* Converter Panel */
+.converter-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 16px;
+  padding: 10px 40px;
+}
+
+.converter-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.converter-select, .converter-input {
+  flex: 1;
+  background: #131824;
+  border: 1px solid #1e2638;
+  color: var(--display-text-main);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.converter-input {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+/* Standard Panel */
+.standard-keypad {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 8px;
+}
+
+/* ==========================================================================
+   Modals, Drawers & Toast Notifications
+   ========================================================================== */
+.drawer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--modal-overlay);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.drawer-overlay.open {
+  display: block;
+}
+
+.drawer-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100%;
+  background: var(--modal-bg);
+  border-right: 1px solid var(--pane-border);
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transform: translateX(-100%);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drawer-overlay.open .drawer-content {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--pane-border);
+  padding-bottom: 12px;
+}
+
+.drawer-title {
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.drawer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawer-section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--display-text-upper);
+  font-weight: 700;
+}
+
+.drawer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #334155;
+  transition: .2s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .2s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--btn-equals-bg);
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+.toast-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #f8fafc;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 10px);
+  transition: all 0.25s ease;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toast-container.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.modal-box {
+  background: var(--modal-bg);
+  border: 1px solid var(--pane-border);
+  border-radius: 12px;
+  max-width: 480px;
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.key-table {
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.key-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--pane-border);
+}
+
+.kbd-badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #38bdf8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ==========================================================================
+   Responsive Optimization
+   ========================================================================== */
+@media (max-width: 960px) {
+  .calculator-container {
+    height: auto;
+    min-height: 640px;
+  }
+  .calc-right-pane {
+    max-width: 300px;
+  }
+  .display-lower-line {
+    font-size: 32px;
+  }
+  .calc-btn {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .calculator-container {
+    height: auto;
+  }
+  .app-body-split {
+    flex-direction: column;
+  }
+  .calc-right-pane {
+    max-width: 100%;
+    width: 100%;
+    height: 240px;
+    border-left: none;
+    border-top: 1px solid var(--pane-border);
+  }
+  .keypad-grid {
+    height: 380px;
+  }
+}
